@@ -17,13 +17,13 @@ import java.util.List;
 public class CategoriasModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private ProdutosModel categoria;
+    private ProdutosModel categorias;
 
     // Vários produtos podem ter a mesma categoria
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categorias")
     private List<ProdutosModel> produtos;
 
 }
