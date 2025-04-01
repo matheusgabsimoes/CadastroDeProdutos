@@ -3,12 +3,8 @@ package SimoesGabMatheus.CadastroDeProdutos.Produtos;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("produtos")
 public class ProdutosController {
-
-    @GetMapping("/helloworld")
-    public String helloWorld() {
-        return "Hello world!";
-    }
 
     //Adicionar produtos
     @PostMapping("/criar")
@@ -17,27 +13,27 @@ public class ProdutosController {
     }
 
     //Procurar produtos por ID
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String mostrarProdutos() {
         return "Mostrar produtos";
     }
 
     //Mostrar produtos por ID
-    @GetMapping("/todosID")
+    @GetMapping("/listarID")
     public String mostrarProdutosPorId() {
         return "Mostrar produtos por id";
     }
 
     //Alterar dados dos produtos
-    @PutMapping("/alterarID")
-    public String alterarProdutosPorId() {
-        return "Alterar produtos por id";
+    @PutMapping("/alterar")
+    public String alterarProdutos() {
+        return "Alterar produtos";
     }
 
     //Remover produtos
-    @DeleteMapping("/deletarID")
-    public String deletarProdutosPorId() {
-        return "Deletar produtos por id";
+    @DeleteMapping("/deletarI")
+    public String deletarProdutos() {
+        return "Deletar produtos";
     }
 
 }
