@@ -2,9 +2,17 @@ package SimoesGabMatheus.CadastroDeProdutos.Produtos;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("produtos")
 public class ProdutosController {
+
+    private ProdutosService produtosService;
+
+    public ProdutosController(ProdutosService produtosService) {
+        this.produtosService = produtosService;
+    }
 
     //Adicionar produtos
     @PostMapping("/criar")
@@ -14,8 +22,8 @@ public class ProdutosController {
 
     //Procurar produtos por ID
     @GetMapping("/listar")
-    public String mostrarProdutos() {
-        return "Mostrar produtos";
+    public List<ProdutosModel> mostrarProdutos() {
+        return produtosService.listarProdutos();
     }
 
     //Mostrar produtos por ID
