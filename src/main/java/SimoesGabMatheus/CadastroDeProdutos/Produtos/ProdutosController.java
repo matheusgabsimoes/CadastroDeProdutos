@@ -16,8 +16,8 @@ public class ProdutosController {
 
     //Adicionar produtos
     @PostMapping("/criar")
-    public ProdutosModel criarProduto(@RequestBody ProdutosModel produtos) {
-        return produtosService.criarProduto(produtos);
+    public ProdutosModel criarProduto(@RequestBody ProdutosModel produto) {
+        return produtosService.criarProduto(produto);
     }
 
     //Procurar produtos por ID
@@ -33,9 +33,9 @@ public class ProdutosController {
     }
 
     //Alterar dados dos produtos
-    @PutMapping("/alterar")
-    public String alterarProdutos() {
-        return "Alterar produtos";
+    @PutMapping("/alterar/{id}")
+    public ProdutosModel alterarProdutosPorId(@PathVariable Long id, @RequestBody ProdutosModel produtoAtualizado) {
+        return produtosService.atualizarProduto(id, produtoAtualizado);
     }
 
     //Remover produtos

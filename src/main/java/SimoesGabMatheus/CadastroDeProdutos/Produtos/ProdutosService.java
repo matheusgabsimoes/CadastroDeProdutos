@@ -30,4 +30,12 @@ public class ProdutosService {
     public void deletarProdutoPorId(Long id) {
         produtosRepository.deleteById(id);
     }
+
+    public ProdutosModel atualizarProduto(Long id, ProdutosModel produtoAtualizado) {
+        if (produtosRepository.existsById(id)) {
+            produtoAtualizado.setId(id);
+            return produtosRepository.save(produtoAtualizado);
+        }
+        return null;
+    }
 }
