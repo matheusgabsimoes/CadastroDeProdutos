@@ -39,9 +39,9 @@ public class ProdutosController {
     }
 
     //Remover produtos
-    @DeleteMapping("/deletarI")
-    public String deletarProdutos() {
-        return "Deletar produtos";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarProdutos(@PathVariable Long id) {
+        produtosService.deletarProdutoPorId(id);
     }
 
 }
