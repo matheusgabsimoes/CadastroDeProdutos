@@ -1,6 +1,7 @@
 package SimoesGabMatheus.CadastroDeProdutos.Categorias;
 
 import SimoesGabMatheus.CadastroDeProdutos.Produtos.ProdutosModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class CategoriasModel {
 
     // Vários produtos podem ter a mesma categoria
     @OneToMany(mappedBy = "categorias")
+    @JsonIgnore
     private List<ProdutosModel> produtos;
 
 }
