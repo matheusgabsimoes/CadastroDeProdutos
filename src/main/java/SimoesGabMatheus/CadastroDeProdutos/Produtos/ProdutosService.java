@@ -3,6 +3,7 @@ package SimoesGabMatheus.CadastroDeProdutos.Produtos;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutosService {
@@ -15,6 +16,11 @@ public class ProdutosService {
 
     public List<ProdutosModel> listarProdutos() {
         return produtosRepository.findAll();
+    }
+
+    public ProdutosModel listarProdutosPorId(Long id) {
+        Optional<ProdutosModel> produtosPorId = produtosRepository.findById(id);
+        return produtosPorId.orElse(null);
     }
 
 }

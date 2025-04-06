@@ -27,9 +27,9 @@ public class ProdutosController {
     }
 
     //Mostrar produtos por ID
-    @GetMapping("/listarID")
-    public String mostrarProdutosPorId() {
-        return "Mostrar produtos por id";
+    @GetMapping("/listar/{id}")
+    public ProdutosModel listarProdutosPorId(@PathVariable Long id) {
+        return produtosService.listarProdutosPorId(id);
     }
 
     //Alterar dados dos produtos
