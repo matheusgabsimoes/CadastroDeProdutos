@@ -16,8 +16,8 @@ public class ProdutosController {
 
     //Adicionar produtos
     @PostMapping("/criar")
-    public String criarProduto() {
-        return "Produto criado";
+    public ProdutosModel criarProduto(@RequestBody ProdutosModel produtos) {
+        return produtosService.criarProduto(produtos);
     }
 
     //Procurar produtos por ID

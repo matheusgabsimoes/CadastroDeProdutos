@@ -23,4 +23,8 @@ public class ProdutosService {
         return produtosPorId.orElse(null);
     }
 
+    public ProdutosModel criarProduto(ProdutosModel produtos) {
+        return produtosRepository.save(produtos);
+    }
+
 }
