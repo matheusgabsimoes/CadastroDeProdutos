@@ -4,37 +4,48 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutosService {
 
     private ProdutosRepository produtosRepository;
+    private ProdutosMapper produtosMapper;
 
-    public ProdutosService(ProdutosRepository produtosRepository) {
+    public ProdutosService(ProdutosRepository produtosRepository, ProdutosMapper produtosMapper) {
         this.produtosRepository = produtosRepository;
+        this.produtosMapper = produtosMapper;
     }
 
-    public List<ProdutosModel> listarProdutos() {
-        return produtosRepository.findAll();
+    public List<ProdutosDTO> listarProdutos() {
+        List<ProdutosModel> produtos = produtosRepository.findAll();
+        return produtos.stream()
+                .map(produtosMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public ProdutosModel listarProdutosPorId(Long id) {
+    public ProdutosDTO listarProdutosPorId(Long id) {
         Optional<ProdutosModel> produtosPorId = produtosRepository.findById(id);
-        return produtosPorId.orElse(null);
+        return produtosPorId.map(produtosMapper::map).orElse(null);
     }
 
-    public ProdutosModel criarProduto(ProdutosModel produtos) {
-        return produtosRepository.save(produtos);
+    public ProdutosDTO criarProduto(ProdutosDTO criarProdutosDTO) {
+        ProdutosModel produto = produtosMapper.map(criarProdutosDTO);
+        produto = produtosRepository.save(produto);
+        return produtosMapper.map(produto);
     }
 
     public void deletarProdutoPorId(Long id) {
         produtosRepository.deleteById(id);
     }
 
-    public ProdutosModel atualizarProduto(Long id, ProdutosModel produtoAtualizado) {
-        if (produtosRepository.existsById(id)) {
+    public ProdutosDTO atualizarProduto(Long id, ProdutosDTO produtosDTO) {
+        Optional<ProdutosModel> produtoExistente = produtosRepository.findById(id);
+        if (produtoExistente.isPresent()) {
+            ProdutosModel produtoAtualizado = produtosMapper.map(produtosDTO);
             produtoAtualizado.setId(id);
-            return produtosRepository.save(produtoAtualizado);
+            ProdutosModel produtoIdSalvo = produtosRepository.save(produtoAtualizado);
+            return produtosMapper.map(produtoIdSalvo);
         }
         return null;
     }
