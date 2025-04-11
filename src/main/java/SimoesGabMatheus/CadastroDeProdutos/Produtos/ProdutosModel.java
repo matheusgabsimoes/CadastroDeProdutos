@@ -27,6 +27,9 @@ public class ProdutosModel implements Serializable {
     @Column (name = "quantidade")
     private int quantidade;
 
+    @Column (name = "validade")
+    private String validade;
+
     @Column (name = "preco")
     private float preco;
 
@@ -34,5 +37,6 @@ public class ProdutosModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private CategoriasModel categorias;
+
 
 }

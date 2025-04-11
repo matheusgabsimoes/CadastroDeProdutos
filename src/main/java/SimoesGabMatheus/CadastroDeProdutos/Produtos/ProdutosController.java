@@ -15,22 +15,22 @@ public class ProdutosController {
     }
 
     @PostMapping("/criar")
-    public ProdutosModel criarProduto(@RequestBody ProdutosModel produto) {
+    public ProdutosDTO criarProduto(@RequestBody ProdutosDTO produto) {
         return produtosService.criarProduto(produto);
     }
 
     @GetMapping("/listar")
-    public List<ProdutosModel> mostrarProdutos() {
+    public List<ProdutosDTO> mostrarProdutos() {
         return produtosService.listarProdutos();
     }
 
     @GetMapping("/listar/{id}")
-    public ProdutosModel listarProdutosPorId(@PathVariable Long id) {
+    public ProdutosDTO listarProdutosPorId(@PathVariable Long id) {
         return produtosService.listarProdutosPorId(id);
     }
 
     @PutMapping("/alterar/{id}")
-    public ProdutosModel alterarProdutosPorId(@PathVariable Long id, @RequestBody ProdutosModel produtoAtualizado) {
+    public ProdutosDTO alterarProdutosPorId(@PathVariable Long id, @RequestBody ProdutosDTO produtoAtualizado) {
         return produtosService.atualizarProduto(id, produtoAtualizado);
     }
 
