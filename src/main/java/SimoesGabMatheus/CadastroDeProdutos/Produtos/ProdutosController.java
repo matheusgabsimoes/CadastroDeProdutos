@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("produtos")
 public class ProdutosController {
 
-    private ProdutosService produtosService;
+    private final ProdutosService produtosService;
 
     public ProdutosController(ProdutosService produtosService) {
         this.produtosService = produtosService;
@@ -33,7 +33,7 @@ public class ProdutosController {
     public ResponseEntity<?> listarProdutosPorId(@PathVariable Long id) {
         ProdutosDTO produtoPorId = produtosService.listarProdutosPorId(id);
         if (produtoPorId != null) {
-            return ResponseEntity.ok("Produto deletado! \n" + produtoPorId);
+            return ResponseEntity.ok("Produto: \n" + produtoPorId);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Produto com" + id +" não existe");
