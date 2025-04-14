@@ -1,5 +1,7 @@
 package SimoesGabMatheus.CadastroDeProdutos.Produtos;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +17,45 @@ public class ProdutosController {
     }
 
     @PostMapping("/criar")
-    public ProdutosDTO criarProduto(@RequestBody ProdutosDTO produto) {
-        return produtosService.criarProduto(produto);
+    public ResponseEntity<String> criarProduto(@RequestBody ProdutosDTO produto) {
+        ProdutosDTO novoProduto = produtosService.criarProduto(produto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Produto criado com sucesso! \n" + novoProduto.getNome());
     }
 
     @GetMapping("/listar")
-    public List<ProdutosDTO> mostrarProdutos() {
-        return produtosService.listarProdutos();
+    public ResponseEntity<List<ProdutosDTO>> mostrarProdutos() {
+        List<ProdutosDTO> listaDeProdutos = produtosService.listarProdutos();
+        return ResponseEntity.ok(listaDeProdutos);
     }
 
     @GetMapping("/listar/{id}")
-    public ProdutosDTO listarProdutosPorId(@PathVariable Long id) {
-        return produtosService.listarProdutosPorId(id);
+    public ResponseEntity<?> listarProdutosPorId(@PathVariable Long id) {
+        ProdutosDTO produtoPorId = produtosService.listarProdutosPorId(id);
+        if (produtoPorId != null) {
+            return ResponseEntity.ok("Produto deletado! \n" + produtoPorId);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Produto com" + id +" não existe");
     }
 
     @PutMapping("/alterar/{id}")
-    public ProdutosDTO alterarProdutosPorId(@PathVariable Long id, @RequestBody ProdutosDTO produtoAtualizado) {
-        return produtosService.atualizarProduto(id, produtoAtualizado);
+    public ResponseEntity<?> alterarProdutosPorId(@PathVariable Long id, @RequestBody ProdutosDTO produtoAtualizado) {
+        ProdutosDTO alterarPorId = produtosService.atualizarProduto(id, produtoAtualizado);
+        if (alterarPorId != null) {
+            return ResponseEntity.ok(alterarPorId);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Produto com" + id +" não existe");
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletarProdutos(@PathVariable Long id) {
-        produtosService.deletarProdutoPorId(id);
+    public ResponseEntity<String> deletarProdutos(@PathVariable Long id) {
+        if (produtosService.listarProdutosPorId(id) != null) {
+            produtosService.deletarProdutoPorId(id);
+            return ResponseEntity.ok("Produto deletado com sucesso! \nID: " + deletarProdutos(id));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Produto não encontrado");
     }
-
 }
