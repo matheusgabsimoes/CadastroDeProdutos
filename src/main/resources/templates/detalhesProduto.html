@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Detalhes do Produto</title>
+  <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .produto-detalhes {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.07);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #34495e;
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    a.btn-voltar {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: bold;
+      transition: color 0.2s ease;
+    }
+
+    a.btn-voltar:hover {
+      color: #1c5980;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Detalhes do Produto</h1>
+
+<div class="produto-detalhes">
+  <table>
+    <thead>
+    <tr>
+      <th>Nome:</th>
+      <th>Categoria:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categorias : ${produtos.categorias}">
+      <td th:text="${categorias.nome}" colspan="2"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <img th:src="${produtos.imgUrl}" th:alt="${produtos.nome}" width="200" />
+  <h2 th:text="${produtos.nome}"></h2>
+  <p><strong>Quantidade:</strong> <span th:text="${produtos.quantidade}"></span></p>
+  <p><strong>Preço:</strong> <span th:text="${produtos.preco}"></span></p>
+  <p><strong>Validade:</strong> <span th:text="${produtos.validade}"></span></p>
+
+  <a class="btn-voltar" th:href="@{/produtos/ui/listar}">
+    <i class="fas fa-arrow-left"></i> Voltar para a lista de produtos
+  </a>
+</div>
+
+</body>
+</html>

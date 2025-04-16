@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 
@@ -13,6 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "categoria_id")
 public class ProdutosModel implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,7 +32,8 @@ public class ProdutosModel implements Serializable {
     private int quantidade;
 
     @Column (name = "validade")
-    private String validade;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate validade;
 
     @Column (name = "preco")
     private float preco;

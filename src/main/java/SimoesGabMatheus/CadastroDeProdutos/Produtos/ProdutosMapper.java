@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 public class ProdutosMapper {
 
     public ProdutosModel map(ProdutosDTO produtosDTO) {
-
         ProdutosModel produtosModel = new ProdutosModel();
         produtosModel.setId(produtosDTO.getId());
         produtosModel.setNome(produtosDTO.getNome());
@@ -15,24 +14,18 @@ public class ProdutosMapper {
         produtosModel.setValidade(produtosDTO.getValidade());
         produtosModel.setPreco(produtosDTO.getPreco());
         produtosModel.setCategorias(produtosDTO.getCategorias());
-
         return produtosModel;
     }
 
     public ProdutosDTO map(ProdutosModel produtosModel) {
-
         ProdutosDTO produtosDTO = new ProdutosDTO();
-        produtosDTO.setId(produtosDTO.getId());
-        produtosDTO.setNome(produtosDTO.getNome());
-        produtosDTO.setImgUrl(produtosDTO.getImgUrl());
-        produtosDTO.setQuantidade(produtosDTO.getQuantidade());
-        produtosDTO.setValidade(produtosDTO.getValidade());
-        produtosDTO.setPreco(produtosDTO.getPreco());
-        produtosDTO.setCategorias(produtosDTO.getCategorias());
-
+        produtosDTO.setId(produtosModel.getId());
+        produtosDTO.setNome(produtosModel.getNome());
+        produtosDTO.setImgUrl(produtosModel.getImgUrl());
+        produtosDTO.setQuantidade(produtosModel.getQuantidade());
+        produtosDTO.setValidade(produtosModel.getValidade());
+        produtosDTO.setPreco(produtosModel.getPreco());
+        produtosDTO.setCategorias(produtosModel.getCategorias());
         return produtosDTO;
     }
-
-
-
 }
