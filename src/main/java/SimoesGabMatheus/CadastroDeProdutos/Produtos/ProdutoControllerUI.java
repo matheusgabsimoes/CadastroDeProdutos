@@ -1,5 +1,7 @@
 package SimoesGabMatheus.CadastroDeProdutos.Produtos;
 
+import SimoesGabMatheus.CadastroDeProdutos.Categorias.CategoriasDTO;
+import SimoesGabMatheus.CadastroDeProdutos.Categorias.CategoriasService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,15 @@ import java.util.List;
 public class ProdutoControllerUI {
 
     private final ProdutosService produtosService;
+    private final CategoriasService categoriasService;
 
     public ProdutoControllerUI(ProdutosService produtosService) {
         this.produtosService = produtosService;
+    }
+
+    public ProdutoControllerUI(ProdutosService produtosService, CategoriasService categoriasService) {
+        this.produtosService = produtosService;
+        this.categoriasService = categoriasService;
     }
 
     @GetMapping("/listar")
@@ -45,6 +53,7 @@ public class ProdutoControllerUI {
     @GetMapping("/adicionar")
     public String mostrarFormularioAdicionarProduto(Model model) {
         model.addAttribute("produtos", new ProdutosDTO());
+        model.addAttribute("categoria", categoriasService.listarCategorias());
         return "adicionarProduto";
     }
 
