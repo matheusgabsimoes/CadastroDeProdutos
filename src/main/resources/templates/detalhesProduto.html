@@ -71,6 +71,21 @@
     a.btn-voltar:hover {
       color: #1c5980;
     }
+
+    table.info-produto thead {
+    background-color: #34495e;
+    color: white;
+    }
+
+    table.info-produto .label {
+      font-weight: bold;
+    }
+
+    table.info-produto .valor {
+      margin-left: 6px;
+      display: inline-block;
+    }
+
   </style>
 </head>
 <body>
@@ -78,19 +93,21 @@
 <h1>Detalhes do Produto</h1>
 
 <div class="produto-detalhes">
-  <table>
+  <table class="info-produto">
     <thead>
     <tr>
-      <th>Nome:</th>
-      <th>Categoria:</th>
+      <th colspan="2">
+        <span class="label">Nome:</span>
+        <span class="valor" th:text="${produtos.nome}"></span>
+      </th>
+      <th colspan="2">
+        <span class="label">Categoria:</span>
+        <span class="valor" th:text="${produtos.categorias.nome}"></span>
+      </th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="categorias : ${produtos.categorias}">
-      <td th:text="${categorias.nome}" colspan="2"></td>
-    </tr>
-    </tbody>
   </table>
+
 
   <img th:src="${produtos.imgUrl}" th:alt="${produtos.nome}" width="200" />
   <h2 th:text="${produtos.nome}"></h2>
