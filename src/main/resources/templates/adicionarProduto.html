@@ -96,7 +96,6 @@
 
         <form th:action="@{/produtos/ui/salvar}" th:object="${produtos}" method="post">
 
-            <!-- Campo oculto do ID (importante para edição) -->
             <input type="hidden" th:field="*{id}" />
 
             <label for="imgUrl">URL da Imagem:</label>
@@ -115,7 +114,18 @@
             <input type="date" id="validade" th:field="*{validade}" required />
 
             <label for="categorias">Categoria:</label>
-            <input type="text" id="categorias" th:field="*{categorias}" />
+            <select id="categorias" name="categorias.id" th:field="*{categorias.id}">
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option th:each="categoria : ${categorias}"
+                        th:value="${categoria.id}"
+                        th:text="${categoria.nome}"
+                        th:selected="${categoria.id} == ${produtos.categorias?.id}">
+                </option>
+            </select>
+
+            <label for="novaCategoria">Ou crie uma nova categoria:</label>
+            <input type="text" id="novaCategoria" name="novaCategoria" placeholder="Digite nova categoria" />
+
 
             <button type="submit" class="btn-salvar">
                 <i class="fas fa-check-circle"></i>

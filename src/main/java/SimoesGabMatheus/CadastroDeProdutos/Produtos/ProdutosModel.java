@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString(exclude = "categoria_id")
+@ToString(exclude = "categorias")
 public class ProdutosModel implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

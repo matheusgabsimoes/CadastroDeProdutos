@@ -1,6 +1,6 @@
 package SimoesGabMatheus.CadastroDeProdutos.Produtos;
-import SimoesGabMatheus.CadastroDeProdutos.Categorias.CategoriasModel;
 
+import SimoesGabMatheus.CadastroDeProdutos.Categorias.CategoriasModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
