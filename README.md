@@ -1,3 +1,5 @@
+![Design sem nome](https://github.com/user-attachments/assets/2bf845be-cc4c-41ad-b11a-07a889aab572)
+
 #  Objetivo da Aplicação
 
 Este projeto foi desenvolvido com o objetivo de **praticar e consolidar conhecimentos** em:
@@ -11,7 +13,7 @@ Este projeto foi desenvolvido com o objetivo de **praticar e consolidar conhecim
 - Versionamento de banco com Flyway
 - Geração de código com Lombok
 
- Baseado no curso de **Spring Boot** do [Java10x].
+ Baseado no curso de **Spring Boot** do Java10x.
 
 ---
 
