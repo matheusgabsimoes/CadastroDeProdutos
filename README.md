@@ -2,7 +2,8 @@
 
 #  Objetivo da Aplicação
 
-Este projeto foi desenvolvido com o objetivo de **praticar e consolidar conhecimentos** em:
+A aplicação fornece endpoints REST para integração externa, além de uma interface HTML tradicional renderizada via Thymeleaf para interação via navegador.
+Este projeto foi desenvolvido com o objetivo de **praticar e consolidar conhecimentos** em: 
 
 - CRUD (Create, Read, Update, Delete)
 - SQL e banco de dados relacional
